@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Inverna.Informe>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.comentarios)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoLectura.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.nombreusuario)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.comentarios)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoLectura.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuario.nombreusuario)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idinforme }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idinforme }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idinforme })
+        </td>
+    </tr>
+}
+
+</table>

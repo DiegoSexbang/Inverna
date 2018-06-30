@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ca7f4682a32b490fa322bce6e1857815" Name="Diagram1">
+        <EntityTypeShape EntityType="invernaderoModel.Alerta" Width="1.5" PointX="7.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="invernaderoModel.Informe" Width="1.5" PointX="2.375" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="invernaderoModel.Lectura" Width="1.5" PointX="3.875" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="invernaderoModel.TipoLectura" Width="1.5" PointX="5.875" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="invernaderoModel.TipoUsuario" Width="1.5" PointX="0.5" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="invernaderoModel.UmbralAlerta" Width="1.5" PointX="6.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="invernaderoModel.Usuario" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="invernaderoModel.alerta_fk_motivoalerta_umbralalerta1" ManuallyRouted="false" />
+        <AssociationConnector Association="invernaderoModel.informe_fk_informe_tipolectura1" ManuallyRouted="false" />
+        <AssociationConnector Association="invernaderoModel.informe_fk_informe_usuario1" ManuallyRouted="false" />
+        <AssociationConnector Association="invernaderoModel.lectura_fk_lectura_tipolectura1" ManuallyRouted="false" />
+        <AssociationConnector Association="invernaderoModel.umbralalerta_fk_lectura_tipolectura10" ManuallyRouted="false" />
+        <AssociationConnector Association="invernaderoModel.usuario_fk_usuario_tipousuario" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

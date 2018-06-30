@@ -1,0 +1,36 @@
+﻿@model Inverna.Informe
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Informe</h4>
+    <hr />
+    <body>
+        <table class="table">
+            <tr>
+                <td>Id Lectura</td>
+                <td>Valor</td>
+                <td>Hora</td>
+                <td>Tipo de Lectura</td>
+            </tr>
+            @foreach (var item in ViewBag.ListadoLecturas)
+            {
+            <tr>
+                <td>@item.idlectura</td>
+                <td>@item.valor</td>
+                <td>@item.hora</td>
+                <td>@item.TipoLectura.nombre</td>
+            </tr>
+            }
+        </table>
+
+    </body>
+</div>
+<p>
+   
+    @Html.ActionLink("Back to List", "Index")
+</p>

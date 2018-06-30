@@ -1,0 +1,41 @@
+﻿
+@model IEnumerable<Lectura>
+
+@{
+    ViewBag.Title = "Index";
+
+}
+
+<h2>Lecturas Generales</h2>
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+   
+</head>
+<body>
+    
+    <table class="table">
+        <tr>
+            <td>Id  </td>
+            <td>Valor  </td>
+            <td>Hora</td>
+            <td>Tipo de Lectura</td>
+        </tr>
+        @foreach (Lectura item in Model)
+        {
+            <tr>
+                <td>@item.idlectura</td>
+                <td>@item.valor</td>
+                <td>@item.hora</td>
+                <td>@item.TipoLectura.nombre</td>
+            </tr>
+        }
+    </table>
+ 
+</body>
+</html>

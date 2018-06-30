@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="invernaderoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Alerta">
+    <Key>
+      <PropertyRef Name="idalerta" />
+    </Key>
+    <Property Name="idalerta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="umbralalerta_idumbralalerta" Type="Int32" Nullable="false" />
+    <Property Name="valorlectura" Type="Double" Nullable="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="comentarios" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="UmbralAlerta" Relationship="Self.alerta_fk_motivoalerta_umbralalerta1" FromRole="Alerta" ToRole="UmbralAlerta" />
+  </EntityType>
+  <EntityType Name="Informe">
+    <Key>
+      <PropertyRef Name="idinforme" />
+    </Key>
+    <Property Name="idinforme" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="usuario_idusuario" Type="Int32" Nullable="false" />
+    <Property Name="tipolectura_idtipolectura" Type="Int32" Nullable="false" />
+    <Property Name="comentarios" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TipoLectura" Relationship="Self.informe_fk_informe_tipolectura1" FromRole="Informe" ToRole="TipoLectura" />
+    <NavigationProperty Name="Usuario" Relationship="Self.informe_fk_informe_usuario1" FromRole="Informe" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Lectura">
+    <Key>
+      <PropertyRef Name="idlectura" />
+    </Key>
+    <Property Name="idlectura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="valor" Type="Double" Nullable="false" />
+    <Property Name="hora" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="tipolectura_idtipolectura" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TipoLectura" Relationship="Self.lectura_fk_lectura_tipolectura1" FromRole="Lectura" ToRole="TipoLectura" />
+  </EntityType>
+  <EntityType Name="TipoLectura">
+    <Key>
+      <PropertyRef Name="idtipolectura" />
+    </Key>
+    <Property Name="idtipolectura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Informe" Relationship="Self.informe_fk_informe_tipolectura1" FromRole="TipoLectura" ToRole="Informe" />
+    <NavigationProperty Name="Lectura" Relationship="Self.lectura_fk_lectura_tipolectura1" FromRole="TipoLectura" ToRole="Lectura" />
+    <NavigationProperty Name="UmbralAlerta" Relationship="Self.umbralalerta_fk_lectura_tipolectura10" FromRole="TipoLectura" ToRole="UmbralAlerta" />
+  </EntityType>
+  <EntityType Name="TipoUsuario">
+    <Key>
+      <PropertyRef Name="idtipousuario" />
+    </Key>
+    <Property Name="idtipousuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Usuario" Relationship="Self.usuario_fk_usuario_tipousuario" FromRole="TipoUsuario" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="UmbralAlerta">
+    <Key>
+      <PropertyRef Name="idumbralalerta" />
+    </Key>
+    <Property Name="idumbralalerta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipolectura_idtipolectura" Type="Int32" Nullable="false" />
+    <Property Name="minimo" Type="Double" Nullable="false" />
+    <Property Name="maximo" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Alerta" Relationship="Self.alerta_fk_motivoalerta_umbralalerta1" FromRole="UmbralAlerta" ToRole="Alerta" />
+    <NavigationProperty Name="TipoLectura" Relationship="Self.umbralalerta_fk_lectura_tipolectura10" FromRole="UmbralAlerta" ToRole="TipoLectura" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="idusuario" />
+    </Key>
+    <Property Name="idusuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombreusuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="contrasenausuario" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tipousuario_idtipousuario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Informe" Relationship="Self.informe_fk_informe_usuario1" FromRole="Usuario" ToRole="Informe" />
+    <NavigationProperty Name="TipoUsuario" Relationship="Self.usuario_fk_usuario_tipousuario" FromRole="Usuario" ToRole="TipoUsuario" />
+  </EntityType>
+  <Association Name="alerta_fk_motivoalerta_umbralalerta1">
+    <End Role="UmbralAlerta" Type="Self.UmbralAlerta" Multiplicity="1" />
+    <End Role="Alerta" Type="Self.Alerta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UmbralAlerta">
+        <PropertyRef Name="idumbralalerta" />
+      </Principal>
+      <Dependent Role="Alerta">
+        <PropertyRef Name="umbralalerta_idumbralalerta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="informe_fk_informe_tipolectura1">
+    <End Role="TipoLectura" Type="Self.TipoLectura" Multiplicity="1" />
+    <End Role="Informe" Type="Self.Informe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoLectura">
+        <PropertyRef Name="idtipolectura" />
+      </Principal>
+      <Dependent Role="Informe">
+        <PropertyRef Name="tipolectura_idtipolectura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="informe_fk_informe_usuario1">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Informe" Type="Self.Informe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="idusuario" />
+      </Principal>
+      <Dependent Role="Informe">
+        <PropertyRef Name="usuario_idusuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="lectura_fk_lectura_tipolectura1">
+    <End Role="TipoLectura" Type="Self.TipoLectura" Multiplicity="1" />
+    <End Role="Lectura" Type="Self.Lectura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoLectura">
+        <PropertyRef Name="idtipolectura" />
+      </Principal>
+      <Dependent Role="Lectura">
+        <PropertyRef Name="tipolectura_idtipolectura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="umbralalerta_fk_lectura_tipolectura10">
+    <End Role="TipoLectura" Type="Self.TipoLectura" Multiplicity="1" />
+    <End Role="UmbralAlerta" Type="Self.UmbralAlerta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoLectura">
+        <PropertyRef Name="idtipolectura" />
+      </Principal>
+      <Dependent Role="UmbralAlerta">
+        <PropertyRef Name="tipolectura_idtipolectura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="usuario_fk_usuario_tipousuario">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="idtipousuario" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="tipousuario_idtipousuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BD" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Alerta" EntityType="Self.Alerta" />
+    <EntitySet Name="Informe" EntityType="Self.Informe" />
+    <EntitySet Name="Lectura" EntityType="Self.Lectura" />
+    <EntitySet Name="TipoLectura" EntityType="Self.TipoLectura" />
+    <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" />
+    <EntitySet Name="UmbralAlerta" EntityType="Self.UmbralAlerta" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+    <AssociationSet Name="alerta_fk_motivoalerta_umbralalerta1" Association="Self.alerta_fk_motivoalerta_umbralalerta1">
+      <End Role="UmbralAlerta" EntitySet="UmbralAlerta" />
+      <End Role="Alerta" EntitySet="Alerta" />
+    </AssociationSet>
+    <AssociationSet Name="informe_fk_informe_tipolectura1" Association="Self.informe_fk_informe_tipolectura1">
+      <End Role="TipoLectura" EntitySet="TipoLectura" />
+      <End Role="Informe" EntitySet="Informe" />
+    </AssociationSet>
+    <AssociationSet Name="informe_fk_informe_usuario1" Association="Self.informe_fk_informe_usuario1">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Informe" EntitySet="Informe" />
+    </AssociationSet>
+    <AssociationSet Name="lectura_fk_lectura_tipolectura1" Association="Self.lectura_fk_lectura_tipolectura1">
+      <End Role="TipoLectura" EntitySet="TipoLectura" />
+      <End Role="Lectura" EntitySet="Lectura" />
+    </AssociationSet>
+    <AssociationSet Name="umbralalerta_fk_lectura_tipolectura10" Association="Self.umbralalerta_fk_lectura_tipolectura10">
+      <End Role="TipoLectura" EntitySet="TipoLectura" />
+      <End Role="UmbralAlerta" EntitySet="UmbralAlerta" />
+    </AssociationSet>
+    <AssociationSet Name="usuario_fk_usuario_tipousuario" Association="Self.usuario_fk_usuario_tipousuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

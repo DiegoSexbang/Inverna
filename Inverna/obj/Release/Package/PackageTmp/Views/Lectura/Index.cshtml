@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+   
+}
+
+
+
+<h2>Index</h2>
+
+
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
+<html>
+<body>
+    <table id="example" class="display" style="width:100%">
+        
+        <thead> 
+            <tr>
+                <th>Id </th>
+                <th>Valor</th>
+                <th>Fecha</th>
+                <th>Tipo Lectura</th>
+                
+            </tr>
+        </thead>
+        </table>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#example').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+            });
+        </script>
+
+</body>
+</html>
+
+
+
+
+
+
+

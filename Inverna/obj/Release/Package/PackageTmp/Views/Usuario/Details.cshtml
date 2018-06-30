@@ -1,0 +1,42 @@
+﻿@model Inverna.Usuario
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Usuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombreusuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombreusuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contrasenausuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contrasenausuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoUsuario.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoUsuario.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.rut }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
