@@ -34,12 +34,12 @@ namespace Inverna.Controllers
                 if (informe.tipolectura_idtipolectura == lec.tipolectura_idtipolectura)
                 {
                    filtrado.Add(lec);
-                }
+                }   
 
             } 
             ViewBag.ListadoLecturas = filtrado;
             return View();
-        }//lista = lista.Where(l => l.tipolectura_idlectura == l.Informe.tipolectura_idtipolectura).Tolist();
+        }
 
         // GET: Informe/Create
         public ActionResult Create()

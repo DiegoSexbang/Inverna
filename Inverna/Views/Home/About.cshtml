@@ -1,6 +1,67 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "Bienvenido";
 }
 <h2>@ViewBag.Title.</h2>
+<html>
+<style type="text/css">
+    <!--
+    div#tabla_uno {
+        width: 550px;
+        position: relative;
+        float: left;
+        height: auto;
+        margin-right: 10px;
+    }
+
+    div#tabla_dos {
+        width: 550px;
+        position: relative;
+        float: left;
+        height: auto;
+    }
+    -->
+</style>
+<body>
+    
+    <div id="tabla_uno" class="container table">
+    <h4>Últimas Lecturas</h4>
+        <table class="table">
+            
+            <tr>
+                <td>Valor</td>
+                <td>Hora</td>
+                <td>Tipo Lectura</td>
+            </tr>
+            @foreach (var item in ViewBag.Ultima)
+            {
+                <tr>
+
+                    <th>@item.valor</th>
+                    <th>@item.hora</th>
+                    <th>@item.TipoLectura.nombre</th>
+                </tr>
+            }
+
+        </table>
+    </div>
+    <div id="tabla_dos" class="container table">
+        <h4>Alertas</h4>
+        <table class="table">
+
+            <tr>
+                <td>Umbral</td>
+                <td>Valor</td>
+                <td>Hora</td>
+                <td>Comentarios</td>
+            </tr>
+
+        </table>
+    </div>
+
+</body>
+
+
+</html>
 
 

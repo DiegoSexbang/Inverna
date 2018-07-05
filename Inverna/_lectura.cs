@@ -13,7 +13,7 @@ namespace Inverna
         {
            
 
-           List<Lectura> lec =  db.Lectura.ToList();
+           List<Lectura> lec =  db.Lectura.Include("TipoLectura").ToList();
 
             return lec;
             

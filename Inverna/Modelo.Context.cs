@@ -17,7 +17,9 @@ namespace Inverna
     {
         public BD()
             : base("name=BD")
+
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

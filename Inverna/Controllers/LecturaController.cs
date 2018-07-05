@@ -22,9 +22,16 @@ namespace Inverna.Controllers
 
         public ActionResult Index()
         {
-            Lectura let = new Lectura();
-            List<Lectura> lista = let.lect();
-
+            var listalectura = db.Lectura.Include("TipoLectura").ToList();
+            List<Filtro> lista = new List<Filtro>();
+            foreach (var lectura in listalectura)
+            {
+                Filtro filtro = new Filtro();
+                filtro.Valor = lectura.valor;
+                filtro.Fecha = lectura.hora.ToString();
+                filtro.TipoLectura = lectura.TipoLectura.nombre;
+                lista.Add(filtro);
+            }
 
             ViewBag.TotalLectura = lista;
             return View();
@@ -33,23 +40,32 @@ namespace Inverna.Controllers
         [HttpPost]
         public JsonResult Filtrar(int id)
         {
-            var listalectura = db.Lectura.ToList();
+            var listalectura = db.Lectura.Include("TipoLectura").ToList();
             if(id != 0 )
                 listalectura = listalectura.Where(l => l.tipolectura_idtipolectura == id).ToList();
-            List<Pico> lista = new List<Pico>();
+            List<Filtro> lista = new List<Filtro>();
             foreach(var lectura in listalectura)
             {
-                Pico pico = new Pico();
-                pico.Valor = lectura.valor;
-                pico.Fecha = lectura.hora.ToString();
-                pico.TipoLectura = lectura.TipoLectura.nombre;
-                lista.Add(pico);
+                Filtro filtro = new Filtro();
+                filtro.Valor = lectura.valor;
+                filtro.Fecha = lectura.hora.ToString();
+                filtro.TipoLectura = lectura.TipoLectura.nombre;
+                lista.Add(filtro);
             }
             //var lista = JsonConvert.SerializeObject(listalectura, Formatting.None, new JsonSerializerSettings() { ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore });
             return Json(lista);
         }
+        [HttpPost]
+       public ActionResult Lala()
+        {
+            var data = db.Lectura.Include("TipoLectura").ToList();
+            
 
-        public class Pico
+            return Json(new {data = data }, JsonRequestBehavior.AllowGet);
+        }
+        
+
+        public class Filtro
         {
             public double Valor { get; set; }
             public string Fecha { get; set; }

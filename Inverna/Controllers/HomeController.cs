@@ -45,7 +45,32 @@ namespace Inverna.Controllers
 
         public ActionResult About()
         {
-            
+            Lectura let = new Lectura();
+            List<Lectura> lis = new List<Lectura>();
+            List<Lectura> las = new List<Lectura>();
+            lis = let.lect();
+            int ultima = lis.Count();
+            if (ultima > 5)
+            {
+                int ultimamenos10 = ultima - 5;
+
+                for (int i = ultimamenos10; i < ultima; i++)
+                {
+                    las.Add(lis.ElementAt(i));
+
+
+                }
+            }
+            else{
+               
+                for (int i = 0; i < ultima; i++)
+                {
+                    las.Add(lis.ElementAt(i));
+
+                }
+
+            }
+            ViewBag.Ultima = las;
 
             return View();
         }
@@ -60,5 +85,8 @@ namespace Inverna.Controllers
         {
             return RedirectToAction("Index", "Home");
         }
+
+        
+        
     }
 }
