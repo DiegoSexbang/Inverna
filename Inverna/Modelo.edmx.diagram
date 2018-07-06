@@ -10,7 +10,7 @@
         <EntityTypeShape EntityType="invernaderoModel.Lectura" Width="1.5" PointX="2" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="invernaderoModel.TipoLectura" Width="1.5" PointX="4.125" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="invernaderoModel.TipoUsuario" Width="1.5" PointX="0.5" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="invernaderoModel.UmbralAlerta" Width="1.5" PointX="6.5" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="invernaderoModel.UmbralAlerta" Width="1.5" PointX="6.625" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="invernaderoModel.Usuario" Width="2.625" PointX="6.375" PointY="1.625" IsExpanded="true" />
         <AssociationConnector Association="invernaderoModel.alerta_fk_motivoalerta_umbralalerta1" ManuallyRouted="false" />
         <AssociationConnector Association="invernaderoModel.informe_fk_informe_tipolectura1" ManuallyRouted="false" />

@@ -4,10 +4,10 @@
  *
  * To rebuild or modify this file with the latest versions of the included
  * software please visit:
- *   https://datatables.net/download/#dt/jszip-2.5.0/pdfmake-0.1.32/dt-1.10.16/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1
+ *   https://datatables.net/download/#dt/jszip-2.5.0/pdfmake-0.1.36/dt-1.10.18/b-1.5.2/b-colvis-1.5.1/b-flash-1.5.2/b-html5-1.5.2/b-print-1.5.2
  *
  * Included libraries:
- *   JSZip 2.5.0, pdfmake 0.1.32, DataTables 1.10.16, Buttons 1.5.1, Column visibility 1.5.1, Flash export 1.5.1, HTML5 export 1.5.1, Print view 1.5.1
+ *   JSZip 2.5.0, pdfmake 0.1.36, DataTables 1.10.18, Buttons 1.5.2, Column visibility 1.5.1, Flash export 1.5.2, HTML5 export 1.5.2, Print view 1.5.2
  */
 
 /*
@@ -55,19 +55,19 @@ table.dataTable thead .sorting_desc_disabled {
   background-position: center right;
 }
 table.dataTable thead .sorting {
-  background-image: url("DataTables-1.10.16/images/sort_both.png");
+  background-image: url("DataTables-1.10.18/images/sort_both.png");
 }
 table.dataTable thead .sorting_asc {
-  background-image: url("DataTables-1.10.16/images/sort_asc.png");
+  background-image: url("DataTables-1.10.18/images/sort_asc.png");
 }
 table.dataTable thead .sorting_desc {
-  background-image: url("DataTables-1.10.16/images/sort_desc.png");
+  background-image: url("DataTables-1.10.18/images/sort_desc.png");
 }
 table.dataTable thead .sorting_asc_disabled {
-  background-image: url("DataTables-1.10.16/images/sort_asc_disabled.png");
+  background-image: url("DataTables-1.10.18/images/sort_asc_disabled.png");
 }
 table.dataTable thead .sorting_desc_disabled {
-  background-image: url("DataTables-1.10.16/images/sort_desc_disabled.png");
+  background-image: url("DataTables-1.10.18/images/sort_desc_disabled.png");
 }
 table.dataTable tbody tr {
   background-color: #ffffff;
@@ -675,7 +675,6 @@ div.dt-button-collection {
   z-index: 2002;
   border-radius: 5px;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
-  z-index: 2002;
   -webkit-column-gap: 8px;
   -moz-column-gap: 8px;
   -ms-column-gap: 8px;

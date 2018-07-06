@@ -63,7 +63,23 @@ namespace Inverna.Controllers
 
             return Json(new {data = data }, JsonRequestBehavior.AllowGet);
         }
-        
+        [HttpPost]
+        public JsonResult Filt()
+        {
+            var listalectura = db.Lectura.Include("TipoLectura").ToList();
+            List<Filtro> lista = new List<Filtro>();
+            foreach (var lectura in listalectura)
+            {
+                Filtro filtro = new Filtro();
+                filtro.Valor = lectura.valor;
+                filtro.Fecha = lectura.hora.ToString();
+                filtro.TipoLectura = lectura.TipoLectura.nombre;
+                lista.Add(filtro);
+            }
+            //var lista = JsonConvert.SerializeObject(listalectura, Formatting.None, new JsonSerializerSettings() { ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore });
+            return Json(lista);
+        }
+
 
         public class Filtro
         {

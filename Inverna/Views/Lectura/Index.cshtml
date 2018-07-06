@@ -18,27 +18,30 @@
    
 </head>
 <body>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
 
-    <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
 
-    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js "></script>
     <script>
         $(document).ready(function () {
             $('#tabla').DataTable({
                 ajax: {
-                    url: '/Lectura/Lala',
+                    url: '/Lectura/Filt',
                     type: "POST",
                     datatype: "json"
                 },
                 columns: [
 
-                    { "data": "valor" },
-                    { "data": "hora" },
-                    { "data": "tipolectura_idtipolectura" }],
+                    { "data": "Valor" },
+                    { "data": "Fecha" },
+                    { "data": "TipoLectura" }],
 
                 dom: 'Bfrtip',
                 buttons: [
@@ -49,64 +52,63 @@
         });
     </script>
     @*<script>
-            function cambio(cb) {
-                var id = cb.selectedIndex;
-                $.ajax({
-                    type: "POST",
-                    traditional: true,
-                    async: false,
-                    cache: false,
-                    url: '/Lectura/Filtrar',
-                    context: document.body,
-                    data: { "id": id },
-                    success: function (listaFiltrada) {
-                        window.alert("entra")
-                        console.log(listaFiltrada);
-                        var contenidotabla =
-                            "<table class='table'>" +
-                            "<tr>" +
-                            "<th>" + "</th>" +
-                            "<th>" + "<p>Valor</p>" + "</th>" +
-                            "<th>" + "<p>Hora</p>" + "</th>" +
-                            "<th>" + "<p>Tipo Lectura</p>" + "</th>" +
-                            "</tr>";
-                        for (var i = 0; i < listaFiltrada.length; i++) {
-                            contenidotabla +=
+                function cambio(cb) {
+                    var id = cb.selectedIndex;
+                    $.ajax({
+                        type: "POST",
+                        traditional: true,
+                        async: false,
+                        cache: false,
+                        url: '/Lectura/Filtrar',
+                        context: document.body,
+                        data: { "id": id },
+                        success: function (listaFiltrada) {
+                            console.log(listaFiltrada);
+                            var contenidotabla =
+                                "<table class='table'>" +
                                 "<tr>" +
-                                "<td>" + listaFiltrada[i].Valor + "</td>" +
-                                "<td>" + listaFiltrada[i].Fecha + "</td>" +
-                                "<td>" + listaFiltrada[i].TipoLectura + "</td>" +
-
+                                "<th>" + "</th>" +
+                                "<th>" + "<p>Valor</p>" + "</th>" +
+                                "<th>" + "<p>Hora</p>" + "</th>" +
+                                "<th>" + "<p>Tipo Lectura</p>" + "</th>" +
                                 "</tr>";
+                            for (var i = 0; i < listaFiltrada.length; i++) {
+                                contenidotabla +=
+                                    "<tr>" +
+                                    "<td>" + listaFiltrada[i].Valor + "</td>" +
+                                    "<td>" + listaFiltrada[i].Fecha + "</td>" +
+                                    "<td>" + listaFiltrada[i].TipoLectura + "</td>" +
+
+                                    "</tr>";
+                            }
+                            contenidotabla += "</table>";
+                            $('.tabla').html(contenidotabla);
+                        },
+                        error: function (xhr) {
+
+                            //debugger;
+                            console.log();
+                            alert("Error has occurred.." + xhr.responseText);
                         }
-                        contenidotabla += "</table>";
-                        $('.tabla').html(contenidotabla);
-                    },
-                    error: function (xhr) {
-
-                        //debugger;
-                        console.log();
-                        alert("Error has occurred.." + xhr.responseText);
-                    }
-                });
+                    });
 
 
-            }
+                }
 
-        </script>
+            </script>
 
-    <div class="row">
-            <div class="col-xs-4"></div>
-            <div class="col-xs-3">
-                <select id="comboboxtipolectura" onchange="cambio(this);">
-                    <option id="0">Todos</option>
-                    <option id="1">Humedad Aire</option>
-                    <option id="2">Temperatura</option>
-                    <option id="3">Luminosidad</option>
-                    <option id="4">Humedad Tierra</option>
-                </select>
-            </div>
-        </div>*@
+        <div class="row">
+                <div class="col-xs-4"></div>
+                <div class="col-xs-3">
+                    <select id="comboboxtipolectura" onchange="cambio(this);">
+                        <option id="0">Todos</option>
+                        <option id="1">Humedad Aire</option>
+                        <option id="2">Temperatura</option>
+                        <option id="3">Luminosidad</option>
+                        <option id="4">Humedad Tierra</option>
+                    </select>
+                </div>
+            </div>*@
 
     <div class="container tabla">
         <table class="table" id="tabla">
